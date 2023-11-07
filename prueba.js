@@ -3,8 +3,9 @@ const soap = require('soap');
 const { Pool } = require('pg');
 const app = express();
 const port = 3000;
-
+require('dotenv').config();
 // Configura la cadena de conexión
+
 const connectionString = process.env.DATABASE_URL 
 let users = [];
 
