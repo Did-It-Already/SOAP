@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 // Configura la cadena de conexión
-const connectionString = 'postgres://default:Utyxu15nKPEv@ep-dry-union-64351208-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb?sslmode=require';
+const connectionString = process.env.DATABASE_URL 
 let users = [];
 
 const pool = new Pool({
