@@ -1,0 +1,51 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://localhost:3000/users"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+             targetNamespace="http://localhost:3000/users">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost:3000/users">
+      <element name="User" type="tns:User"/>
+      <complexType name="User">
+        <sequence>
+          <element name="user_id" type="xsd:int"/>
+          <element name="name" type="xsd:string"/>
+          <element name="last_name" type="xsd:string"/>
+          <element name="email" type="xsd:string"/>
+          <element name="profile_picture" type="xsd:string"/>
+          <element name="theme" type="xsd:string"/>
+        </sequence>
+      </complexType>
+    </schema>
+  </types>
+
+  <message name="GetUsersRequest"/>
+  <message name="GetUsersResponse">
+    <part name="users" type="tns:User" />
+  </message>
+
+  <portType name="UserPortType">
+    <operation name="GetUsers">
+      <input message="tns:GetUsersRequest"/>
+      <output message="tns:GetUsersResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="UserBinding" type="tns:UserPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetUsers">
+      <input>
+        <soap:body use="encoded" namespace="http://localhost:3000/users" encodingStyle="http://schemas.xmlsoap.org/soap/encoding"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://localhost:3000/users" encodingStyle="http://schemas.xmlsoap.org/soap/encoding"/>
+      </output>
+    </operation>
+  </binding>
+
+  <service name="UserService">
+    <port name="UserPort" binding="tns:UserBinding">
+      <soap:address location="http://localhost:3000/users"/>
+    </port>
+  </service>
+</definitions>
