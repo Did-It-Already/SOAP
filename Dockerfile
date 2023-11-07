@@ -1,13 +1,13 @@
 FROM node:18.17.1-alpine3.17
 
-WORKDIR /app
+WORKDIR /
 
 COPY . .
 
 RUN npm install
 
 
-EXPOSE 4525
+EXPOSE 3000
 
-CMD ["node", "src/app.js"]
+CMD ["node", "prueba.js"]
 
